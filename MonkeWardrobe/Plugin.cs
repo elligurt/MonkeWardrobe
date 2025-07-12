@@ -1,4 +1,4 @@
-﻿using BepInEx;
+using BepInEx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
@@ -6,8 +6,9 @@ using System.Collections;
 [BepInPlugin("com.elliot.gorillatag.monkewardrobe", "MonkeWardrobe", "1.0.0")]
 public class Plugin : BaseUnityPlugin
 {
-    private GameObject clone1;
-    private GameObject clone2;
+    private GameObject wardrobeGazebo;
+    private GameObject wardrobeMirror;
+    private GameObject wardrobeBasement;
 
     private readonly string bayouSceneName = "Bayou";
 
@@ -37,20 +38,26 @@ public class Plugin : BaseUnityPlugin
         var satelliteWardrobe = computerArea.Find("SatelliteWardrobe");
         if (satelliteWardrobe == null) yield break;
 
-        clone1 = Instantiate(satelliteWardrobe.gameObject, StandLocations.Stand1Position, StandLocations.Stand1Rotation);
-        clone1.name = "GazeboWardrobe";
-        clone1.SetActive(true);
-        DontDestroyOnLoad(clone1);
+        wardrobeGazebo = Instantiate(satelliteWardrobe.gameObject, StandLocations.gazeboStandPosition, StandLocations.gazeboStandRotation);
+        wardrobeGazebo.name = "GazeboWardrobe";
+        wardrobeGazebo.SetActive(true);
+        DontDestroyOnLoad(wardrobeGazebo);
 
-        clone2 = Instantiate(satelliteWardrobe.gameObject, StandLocations.Stand2Position, StandLocations.Stand2Rotation);
-        clone2.name = "CityMirrorWardrobe";
-        clone2.SetActive(true);
-        DontDestroyOnLoad(clone2);
+        wardrobeMirror = Instantiate(satelliteWardrobe.gameObject, StandLocations.mirrorStandPosition, StandLocations.mirrorStandRotation);
+        wardrobeMirror.name = "CityMirrorWardrobe";
+        wardrobeMirror.SetActive(true);
+        DontDestroyOnLoad(wardrobeMirror);
+
+        wardrobeBasement = Instantiate(satelliteWardrobe.gameObject, StandLocations.basementStandPosition, StandLocations.basementStandRotation);
+        wardrobeBasement.name = "BasementWardrobe";
+        wardrobeBasement.SetActive(true);
+        DontDestroyOnLoad(wardrobeBasement);
     }
 
     void Update()
     {
-        if (clone1 != null && !clone1.activeSelf) clone1.SetActive(true);
-        if (clone2 != null && !clone2.activeSelf) clone2.SetActive(true);
+        if (wardrobeGazebo != null && !wardrobeGazebo.activeSelf) wardrobeGazebo.SetActive(true);
+        if (wardrobeMirror != null && !wardrobeMirror.activeSelf) wardrobeMirror.SetActive(true);
+        if (wardrobeBasement != null && !wardrobeBasement.activeSelf) wardrobeBasement.SetActive(true);
     }
 }
