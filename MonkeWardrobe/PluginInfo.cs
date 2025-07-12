@@ -7,6 +7,6 @@
 	{
 		public const string GUID = "com.elliot.gorillatag.monkewardrobe";
 		public const string Name = "MonkeWardrobe";
-		public const string Version = "1.0.0";
+		public const string Version = "1.0.1";
 	}
 }
